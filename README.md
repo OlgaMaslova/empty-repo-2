@@ -1,42 +1,62 @@
-# empty-repo-2
+# The Rustic Table — Food Blog Starter
 
-A minimal Hello World React application scaffolded with Vite. It renders a single `<h1>Hello, World!</h1>` and serves as a clean starting point for React + Vite projects.
+A production-ready **HTML/CSS/JS static site foundation** for a food blog. No frameworks, no build step required — open `index.html` in any browser and you're running.
 
-## Prerequisites
+This is a skeleton, not a finished product. It gives you clean semantic markup, a warm design system, and progressively-enhanced JavaScript to build on top of, not a CMS or a full application.
 
-- [Node.js](https://nodejs.org/) ≥ 18
-- npm (comes bundled with Node.js)
+---
 
-## Installation
+## Tech Stack
+
+| Layer      | Choice                                                         |
+|------------|----------------------------------------------------------------|
+| Markup     | Semantic HTML5                                                 |
+| Styles     | CSS3 — custom properties (design tokens), CSS Grid, Flexbox   |
+| Scripting  | Vanilla ES2015+ — zero runtime dependencies                    |
+| Dev server | [Vite](https://vitejs.dev/) (optional — any static host works) |
+
+---
+
+## File Structure
+
+```
+food-blog/
+├── index.html       # Semantic homepage — header, hero, recipe grid, footer
+├── styles.css       # Design tokens, layout, components, responsive breakpoints
+├── script.js        # Progressive enhancement — nav toggle, scroll header, smooth-scroll
+├── vite.config.js   # Vite static dev-server config (no plugins needed)
+├── package.json
+└── README.md
+```
+
+---
+
+## Running Locally
+
+**Option A — Vite dev server** (hot-reload, recommended while developing):
 
 ```bash
 npm install
-```
-
-## Development Server
-
-```bash
 npm start
+# → http://localhost:5173
 ```
 
-Starts the Vite dev server. Open [http://localhost:5173](http://localhost:5173) in your browser to view the app. The page hot-reloads automatically on file changes.
-
-## Production Build
-
-```bash
-npm run build
-```
-
-Compiles and bundles the app for production. Output is written to the `dist/` folder (excluded from version control via `.gitignore`).
-
-## Project Structure
+**Option B — No install, no build step:**
 
 ```
-empty-repo-2/
-├── index.html        # HTML entry point — mounts the React app
-├── src/
-│   ├── main.jsx      # React root — renders <App /> into #root
-│   └── App.jsx       # Top-level component — renders <h1>Hello, World!</h1>
-├── vite.config.js    # Vite configuration (React plugin)
-└── package.json      # Project metadata, scripts, and dependencies
+Open index.html directly in any browser.
 ```
+
+All three files (`index.html`, `styles.css`, `script.js`) are plain static assets — they work on any host: GitHub Pages, Netlify, Vercel, an S3 bucket, or a bare nginx server.
+
+---
+
+## Extending This Foundation
+
+- **More pages** — add `recipes.html`, `about.html`, `contact.html` alongside `index.html`; link them from the `<nav>`.
+- **Real recipe data** — create a `recipes.json` file and fetch it with the Fetch API to replace the placeholder cards dynamically.
+- **Headless CMS** — connect [Contentful](https://www.contentful.com/), [Sanity](https://www.sanity.io/), or [Decap CMS](https://decapcms.org/) for content management without giving up the static-site model.
+- **Add a framework** — Vite makes this trivial: `npm install react react-dom @vitejs/plugin-react`, update `vite.config.js`, and your existing CSS/JS sits right alongside React components.
+- **Styling enhancements** — drop in [Sass](https://sass-lang.com/) or [PostCSS](https://postcss.org/) via a Vite plugin; the existing CSS custom properties map cleanly onto Sass variables.
+- **Hero photo** — swap the CSS gradient in `styles.css` `.hero` for a real photograph (the inline comment shows the exact one-liner).
+- **Recipe card images** — replace the `<!-- Replace with <img …> -->` comments in each `.recipe-card__image` div with a real `<img>` tag or an inline `style="background-image: url(…)"`.

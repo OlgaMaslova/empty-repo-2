@@ -1,0 +1,415 @@
+/* ==========================================================================
+   The Rustic Table — styles.css
+   Sections:
+     §1  Custom Properties
+     §2  Reset & Base
+     §3  Container
+     §4  Header
+     §5  Hamburger & Mobile Nav  (scoped to .js / .no-js)
+     §6  Hero
+     §7  Button
+     §8  Featured Recipes Section
+     §9  Recipe Card
+     §10 Footer
+   ========================================================================== */
+
+
+/* ── §1  Custom Properties ─────────────────────────────────────────────────── */
+:root {
+  /* Colours */
+  --color-primary:      #C0572A;   /* terracotta */
+  --color-primary-dark: #A0481F;
+  --color-accent:       #E8A838;   /* gold */
+  --color-bg:           #FAF7F2;   /* warm off-white */
+  --color-bg-alt:       #F2EDE6;
+  --color-text:         #2D2926;   /* dark warm-brown */
+  --color-text-muted:   #7A6E68;
+  --color-border:       #E5DED6;
+  --color-white:        #FFFFFF;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Lato', system-ui, sans-serif;
+
+  /* Spacing scale */
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1.25rem;
+  --space-lg:  2rem;
+  --space-xl:  3rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --max-width:       1100px;
+  --border-radius:   0.5rem;
+  --border-radius-lg: 1rem;
+
+  /* Shadows (warm-tinted) */
+  --shadow-sm: 0 1px 3px rgba(45, 41, 38, 0.08), 0 1px 2px rgba(45, 41, 38, 0.06);
+  --shadow-md: 0 4px 12px rgba(45, 41, 38, 0.12), 0 2px 4px rgba(45, 41, 38, 0.08);
+  --shadow-lg: 0 10px 28px rgba(45, 41, 38, 0.16), 0 4px 8px rgba(45, 41, 38, 0.10);
+
+  /* Motion */
+  --transition: 200ms ease;
+}
+
+
+/* ── §2  Reset & Base ──────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* ── §3  Container ─────────────────────────────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+
+/* ── §4  Header ────────────────────────────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-white);
+  box-shadow: none;
+  transition: box-shadow var(--transition);
+}
+
+.site-header.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+/* Logo */
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.logo:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Nav links */
+.main-nav ul {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.main-nav a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.main-nav a:hover {
+  color: var(--color-primary);
+}
+
+
+/* ── §5  Hamburger & Mobile Nav ─────────────────────────────────────────────
+   The hamburger and collapsed nav are scoped to .js so the nav remains
+   accessible when JavaScript is disabled (.no-js path).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Base: button is hidden everywhere — shown on mobile only when JS is active */
+.nav-toggle {
+  display: none;
+}
+
+/* Hamburger bar lines */
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+@media (max-width: 640px) {
+
+  /* ── JS active: hamburger + collapsible nav ── */
+  .js .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+  }
+
+  .js .main-nav {
+    display: none;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .js .main-nav.is-open {
+    display: block;
+  }
+
+  .js .main-nav ul {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  /* ── No-JS: nav always visible on mobile ── */
+  .no-js .main-nav {
+    display: block;
+  }
+
+  .no-js .main-nav ul {
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-block: var(--space-xs);
+  }
+}
+
+
+/* ── §6  Hero ──────────────────────────────────────────────────────────────── */
+.hero {
+  /* Swap for photo: background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('hero.jpg') center/cover no-repeat */
+  background: linear-gradient(135deg, #3D1A0F 0%, var(--color-primary) 55%, var(--color-accent) 100%);
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-2xl) var(--space-sm);
+}
+
+.hero__content {
+  max-width: 640px;
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.88);
+  margin-block: var(--space-sm) var(--space-lg);
+}
+
+
+/* ── §7  Button ────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: var(--border-radius);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+
+.btn--primary {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+
+/* ── §8  Featured Recipes Section ──────────────────────────────────────────── */
+.featured-recipes {
+  padding: var(--space-2xl) 0;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--space-xs);
+}
+
+.section-subtitle {
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+
+/* ── §9  Recipe Card ────────────────────────────────────────────────────────── */
+.recipe-card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Placeholder image area — swap for a real <img> or background-image */
+.recipe-card__image {
+  height: 200px;
+  background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-border) 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.recipe-card__body {
+  padding: var(--space-md);
+}
+
+/* Category badge */
+.recipe-card__category {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--border-radius);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.recipe-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: var(--space-sm);
+}
+
+.recipe-card__title a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.recipe-card__title a:hover {
+  color: var(--color-primary);
+}
+
+.recipe-card__meta {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin-block: var(--space-xs);
+}
+
+.recipe-card__excerpt {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+
+/* ── §10 Footer ────────────────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: var(--space-xl) 0;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.footer__brand {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.footer__nav a {
+  color: var(--color-bg);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer__nav a:hover {
+  color: var(--color-accent);
+}
+
+.footer__copy {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}

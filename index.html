@@ -1,12 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React App</title>
+    <meta
+      name="description"
+      content="The Rustic Table — simple, seasonal recipes made with love. A food blog for every home cook."
+    />
+    <title>The Rustic Table — A Food Blog</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="logo">The Rustic Table</a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+          <ul>
+            <li><a href="#recipes">Recipes</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===================== MAIN ===================== -->
+    <main>
+
+      <!-- Hero background: swap CSS gradient for background-image: url('path/to/hero.jpg') in styles.css -->
+      <section class="hero" aria-label="Site introduction">
+        <div class="hero__content">
+          <h1 class="hero__title">Food Made with Love</h1>
+          <p class="hero__subtitle">Simple, seasonal recipes for every table</p>
+          <a href="#recipes" class="btn btn--primary">Explore Recipes</a>
+        </div>
+      </section>
+
+      <section class="featured-recipes" id="recipes" aria-labelledby="recipes-heading">
+        <div class="container">
+          <h2 class="section-title" id="recipes-heading">Featured Recipes</h2>
+          <p class="section-subtitle">Hand-picked dishes for every occasion</p>
+
+          <div class="recipe-grid">
+
+            <article class="recipe-card">
+              <div class="recipe-card__image">
+                <!-- Replace with <img src="pancakes.jpg" alt="Stack of lemon ricotta pancakes dusted with powdered sugar"> -->
+                <!-- Or set via inline style: style="background-image: url('pancakes.jpg')" -->
+              </div>
+              <div class="recipe-card__body">
+                <span class="recipe-card__category">Breakfast</span>
+                <h3 class="recipe-card__title">
+                  <a href="#">Lemon Ricotta Pancakes</a>
+                </h3>
+                <p class="recipe-card__meta">25 min &middot; Easy</p>
+                <p class="recipe-card__excerpt">
+                  Fluffy, cloud-like pancakes with a bright lemon zing and creamy ricotta —
+                  the weekend breakfast you'll make on repeat.
+                </p>
+              </div>
+            </article>
+
+            <article class="recipe-card">
+              <div class="recipe-card__image">
+                <!-- Replace with <img src="pasta.jpg" alt="Bowl of roasted tomato pasta with fresh basil"> -->
+                <!-- Or set via inline style: style="background-image: url('pasta.jpg')" -->
+              </div>
+              <div class="recipe-card__body">
+                <span class="recipe-card__category">Dinner</span>
+                <h3 class="recipe-card__title">
+                  <a href="#">Roasted Tomato Pasta</a>
+                </h3>
+                <p class="recipe-card__meta">40 min &middot; Medium</p>
+                <p class="recipe-card__excerpt">
+                  Slow-roasted cherry tomatoes, garlic, and fresh basil tossed with al dente
+                  pasta — effortlessly satisfying on any weeknight.
+                </p>
+              </div>
+            </article>
+
+            <article class="recipe-card">
+              <div class="recipe-card__image">
+                <!-- Replace with <img src="tart.jpg" alt="Slice of brown butter apple tart with caramel glaze"> -->
+                <!-- Or set via inline style: style="background-image: url('tart.jpg')" -->
+              </div>
+              <div class="recipe-card__body">
+                <span class="recipe-card__category">Dessert</span>
+                <h3 class="recipe-card__title">
+                  <a href="#">Brown Butter Apple Tart</a>
+                </h3>
+                <p class="recipe-card__meta">1 hr 10 min &middot; Medium</p>
+                <p class="recipe-card__excerpt">
+                  A buttery, flaky shell filled with caramelised apples and a rich brown
+                  butter custard — autumn on a plate.
+                </p>
+              </div>
+            </article>
+
+          </div><!-- /.recipe-grid -->
+        </div><!-- /.container -->
+      </section><!-- /.featured-recipes -->
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" id="contact">
+      <div class="container">
+        <p class="footer__brand">The Rustic Table</p>
+
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <a href="#recipes">Recipes</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <p class="footer__copy">
+          &copy; <span id="year">2025</span> The Rustic Table. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
   </body>
 </html>
