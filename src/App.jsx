@@ -1,3 +1,9 @@
+import BlogSection from './components/BlogSection';
+
 export default function App() {
-  return <h1>Hello, World!</h1>;
+  return (
+    <div className="app">
+      <BlogSection />
+    </div>
+  );
 }
